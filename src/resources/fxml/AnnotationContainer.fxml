@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="window" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vid.controller.AnnotationContainerController">
+   <children>
+      <GridPane fx:id="gridpane" prefHeight="60.0" prefWidth="115.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <AnchorPane maxWidth="15.0" minWidth="15.0" GridPane.columnIndex="1">
+               <children>
+                  <Button fx:id="close" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" maxHeight="15.0" maxWidth="15.0" minHeight="15.0" minWidth="15.0" mnemonicParsing="false" text="Close" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <graphic>
+                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/close-circle-512.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Close" />
+                     </tooltip>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="container" prefHeight="200.0" prefWidth="200.0" />
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

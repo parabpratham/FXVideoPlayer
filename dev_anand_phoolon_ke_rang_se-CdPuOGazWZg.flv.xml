@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><Video_anno_data><annotation id="3" 
+ type="com.vid.comp.Jcomp.Note">
+<starttime>14030</starttime>
+<endtime> 14030</endtime><comp_type>JCOMPONENT</comp_type><parameters set="1"> 
+<StartX> 50.05</StartX> 
+<StartY>121.05</StartY> 
+<Width>100.0</Width> 
+<Height>50.0</Height> 
+<BgColor>rgba(230,179,230,0.0)</BgColor> 
+<DisplayString> Singer :
+Kishore Kumar </DisplayString> 
+<DisplayStringColor> rgb(179,26,26) </DisplayStringColor> 
+<Font>Arial</Font> 
+<Font_size>11</Font_size> 
+<Bold>true</Bold>
+<Italic>false</Italic>
+<Strikethrough>false</Strikethrough>
+<Underline>false</Underline>
+</parameters> 
+</annotation> 
+<annotation id="4" 
+ type="com.vid.comp.Jcomp.SpotLight">
+<starttime>14030</starttime>
+<endtime> 19226</endtime><comp_type>JCOMPONENT</comp_type><parameters set="1"> 
+<StartX> 323.05</StartX> 
+<StartY>320.05</StartY> 
+<Width>173.0</Width> 
+<Height>71.0</Height> 
+<BgColor>rgba(128,77,128,25.925925925925924)</BgColor> 
+<Bgfilepath>C:\Users\hp\Desktop\1.jpg</Bgfilepath> 
+<Showonhover>false</Showonhover> 
+<Fillbg>false</Fillbg> 
+<DisplayString> Cast:
+Devanand, Actress1, Actor2 etc </DisplayString> 
+<DisplayStringColor> rgb(255,255,255) </DisplayStringColor> 
+<Font>Arial</Font> 
+<Font_size>14</Font_size> 
+<Bold>true</Bold>
+<Italic>false</Italic>
+<Strikethrough>false</Strikethrough>
+<Underline>false</Underline>
+</parameters> 
+</annotation> 
+<annotation id="5" 
+ type="com.vid.comp.Jcomp.Note">
+<starttime>44897</starttime>
+<endtime> 69724</endtime><comp_type>JCOMPONENT</comp_type><parameters set="1"> 
+<StartX> 14.05</StartX> 
+<StartY>130.05</StartY> 
+<Width>168.0</Width> 
+<Height>56.0</Height> 
+<BgColor>rgba(204,153,204,24.074074074074073)</BgColor> 
+<DisplayString> Lena hoga janam tumhe kai kai bar </DisplayString> 
+<DisplayStringColor> rgb(51,26,128) </DisplayStringColor> 
+<Font>Bauhaus 93</Font> 
+<Font_size>16</Font_size> 
+<Bold>false</Bold>
+<Italic>false</Italic>
+<Strikethrough>false</Strikethrough>
+<Underline>false</Underline>
+</parameters> 
+</annotation> 
+<annotation id="6" 
+ type="com.vid.comp.Jcomp.AnnotationMarkers">
+<starttime>92600</starttime>
+<endtime> 92600</endtime><comp_type>JCOMPONENT</comp_type><parameters set="1"> 
+<StartX> 438.05</StartX> 
+<StartY>21.05</StartY> 
+<Width>118.0</Width> 
+<Height>141.0</Height> 
+<Bgfilepath>C:\Users\hp\Desktop\2.jpg</Bgfilepath> 
+<DisplayString> Song is for her, </DisplayString> 
+<DisplayStringColor> rgb(255,255,255) </DisplayStringColor> 
+<Font>Arial</Font> 
+<Font_size>8</Font_size> 
+<Bold>false</Bold>
+<Italic>false</Italic>
+<Strikethrough>false</Strikethrough>
+<Detachable>true</Detachable>
+<Initially_detached>true</Initially_detached>
+<Auto_position>false</Auto_position>
+<Arrow_indent>12.0</Arrow_indent>
+<Arrow_size>12.0</Arrow_size>
+<Corner_radius>6.0</Corner_radius>
+<Arrow_loaction>LEFT_CENTER</Arrow_loaction>
+</parameters> 
+</annotation> 
+<annotation id="7" 
+ type="com.vid.comp.Jcomp.AnnotationMarkers">
+<starttime>92600</starttime>
+<endtime> 145719</endtime><comp_type>JCOMPONENT</comp_type><parameters set="1"> 
+<StartX> 441.05</StartX> 
+<StartY>25.05</StartY> 
+<Width>99.0</Width> 
+<Height>112.0</Height> 
+<Bgfilepath>C:\Users\hp\Desktop\2.jpg</Bgfilepath> 
+<DisplayString> Song is for her
+C:\Users\hp\Desktop\2.jpg </DisplayString> 
+<DisplayStringColor> rgb(77,102,204) </DisplayStringColor> 
+<Font>Arial</Font> 
+<Font_size>8</Font_size> 
+<Bold>false</Bold>
+<Italic>false</Italic>
+<Strikethrough>false</Strikethrough>
+<Detachable>true</Detachable>
+<Initially_detached>true</Initially_detached>
+<Auto_position>false</Auto_position>
+<Arrow_indent>22.555555555555557</Arrow_indent>
+<Arrow_size>18.944444444444443</Arrow_size>
+<Corner_radius>19.333333333333336</Corner_radius>
+<Arrow_loaction>RIGHT_TOP</Arrow_loaction>
+</parameters> 
+</annotation> 
+</Video_anno_data>

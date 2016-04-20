@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Video_anno_data>
+	<annotation id="0" type="com.vid.comp.Jcomp.SpotLight">
+		<starttime>1995</starttime>
+		<endtime> 6745</endtime>
+		<comp_type>JCOMPONENT</comp_type>
+		<parameters set="1">
+			<StartX> 72.05</StartX>
+			<StartY>137.05</StartY>
+			<Width>255.0</Width>
+			<Height>117.0</Height>
+			<BgColor>rgba(128,51,77,57.407407407407405)</BgColor>
+			<Bgfilepath></Bgfilepath>
+			<Showonhover>true</Showonhover>
+			<Fillbg>true</Fillbg>
+			<DisplayString> Jai Mata Di </DisplayString>
+			<DisplayStringColor> rgb(0,0,0) </DisplayStringColor>
+			<Font>Arial</Font>
+			<Font_size>8</Font_size>
+			<Bold>false</Bold>
+			<Italic>false</Italic>
+			<Strikethrough>false</Strikethrough>
+			<Underline>false</Underline>
+		</parameters>
+	</annotation>
+	<annotation id="1" type="com.vid.comp.Jcomp.SpotLight">
+		<starttime>8550</starttime>
+		<endtime> 14355</endtime>
+		<comp_type>JCOMPONENT</comp_type>
+		<parameters set="1">
+			<StartX> 355.05</StartX>
+			<StartY>66.05</StartY>
+			<Width>100.0</Width>
+			<Height>50.0</Height>
+			<BgColor>rgba(51,26,128,0.0)</BgColor>
+			<Bgfilepath></Bgfilepath>
+			<Showonhover>false</Showonhover>
+			<Fillbg>false</Fillbg>
+			<DisplayString> Hi next </DisplayString>
+			<DisplayStringColor> rgb(0,0,0) </DisplayStringColor>
+			<Font>Arial</Font>
+			<Font_size>8</Font_size>
+			<Bold>false</Bold>
+			<Italic>false</Italic>
+			<Strikethrough>false</Strikethrough>
+			<Underline>false</Underline>
+		</parameters>
+	</annotation>
+	<annotation id="2" type="com.vid.comp.Jcomp.SpotLight">
+		<starttime>13965</starttime>
+		<endtime> 27569</endtime>
+		<comp_type>JCOMPONENT</comp_type>
+		<parameters set="1">
+			<StartX> 99.05</StartX>
+			<StartY>46.05</StartY>
+			<Width>100.0</Width>
+			<Height>50.0</Height>
+			<BgColor>rgba(255,255,255,34.25925925925926)</BgColor>
+			<Bgfilepath>C:\Users\hp\Desktop\1.jpg</Bgfilepath>
+			<Showonhover>true</Showonhover>
+			<Fillbg>false</Fillbg>
+			<DisplayString> Prem pujari me dl ka pata </DisplayString>
+			<DisplayStringColor> rgb(0,0,0) </DisplayStringColor>
+			<Font>Arial</Font>
+			<Font_size>8</Font_size>
+			<Bold>false</Bold>
+			<Italic>false</Italic>
+			<Strikethrough>false</Strikethrough>
+			<Underline>false</Underline>
+		</parameters>
+	</annotation>
+</Video_anno_data>
