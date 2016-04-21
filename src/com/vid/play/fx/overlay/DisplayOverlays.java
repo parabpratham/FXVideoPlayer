@@ -1,7 +1,6 @@
 package com.vid.play.fx.overlay;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +48,11 @@ public class DisplayOverlays implements Runnable {
 	@Override
 	public void run() {
 		overlays = new HashMap<>(OverLayGenerator.getOverlays());
+
+		if (overlays == null || overlays.size() == 0) {
+			return;
+		}
+
 		if (getOverlays() != null) {
 			keySet.addAll(OverLayGenerator.getOverlays().keySet());
 			java.util.Collections.sort(keySet);
@@ -82,12 +86,10 @@ public class DisplayOverlays implements Runnable {
 			public void timeChanged(uk.co.caprica.vlcj.player.MediaPlayer mediaPlayer, long newTime) {
 				super.timeChanged(mediaPlayer, newTime);
 				if (newTime >= nextTime) {
-					//System.out.println("Display overlay Event called " + newTime + " " + nextTime);
 					if (prevAnnoCount != null) {
 						Platform.runLater(new Runnable() {
 							@Override
 							public void run() {
-								//System.out.println("removeAnnotationComp " + Calendar.getInstance().getTimeInMillis());
 								removeAnnotationComp();
 							}
 						});
@@ -95,19 +97,22 @@ public class DisplayOverlays implements Runnable {
 					for (; overlayIndex < keySet.size() - 1; overlayIndex++) {
 						boolean isTrue = (newTime >= keySet.get(overlayIndex)
 								&& newTime < keySet.get(overlayIndex + 1));
-						System.out.println(overlayIndex + " " + newTime + ">=" + keySet.get(overlayIndex) + " -- "
-								+ newTime + " < " + keySet.get(overlayIndex + 1) + " " + isTrue);
+						// System.out.println(overlayIndex + " " + newTime +
+						// ">=" + keySet.get(overlayIndex) + " -- "
+						// + newTime + " < " + keySet.get(overlayIndex + 1) + "
+						// " + isTrue);
 						if (isTrue) {
 							try {
 								System.out.println("Display overlay " + overlayIndex + " " + keySet.get(overlayIndex)
 										+ " " + newTime + " " + keySet.get(overlayIndex + 1));
+								Integer integer = keySet.get(overlayIndex);
 								// mediaPlayer.pause();
 								Platform.runLater(new Runnable() {
 									@Override
 									public void run() {
-										System.out.println(
-												"setAnnotationComp " + Calendar.getInstance().getTimeInMillis());
-										setAnnotationComp(getOverlays().get(keySet.get(overlayIndex)));
+										// System.out.println("setAnnotationComp
+										// " + newTime + " " + integer);
+										setAnnotationComp(getOverlays().get(integer));
 									}
 								});
 							} catch (Exception e) {
@@ -139,7 +144,7 @@ public class DisplayOverlays implements Runnable {
 			return;
 		for (Node node : prevAnnoCount) {
 			try {
-				//System.out.println("Remove " + node + " ");
+				// System.out.println("Remove " + node + " ");
 				getPlayerHolder().getChildren().remove(node);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -150,7 +155,8 @@ public class DisplayOverlays implements Runnable {
 
 	private void setAnnotationComp(CustomOverlayMarker customOverlayMarker) {
 		prevAnnoCount = new ArrayList<>();
-		System.out.println("customOverlayMarker.getAnnotations() -- " + customOverlayMarker.getAnnotations().size());
+		// System.out.println("customOverlayMarker.getAnnotations() -- " +
+		// customOverlayMarker.getAnnotations().size());
 		try {
 			for (Annotation annotation : customOverlayMarker.getAnnotations()) {
 				if (!annotation.isClosed()) {
