@@ -7,6 +7,7 @@ import org.jdom2.Element;
 
 import com.vid.commons.Helper;
 import com.vid.comp.Jcomp.AbstractComp;
+import com.vid.comp.Jcomp.StaticComponent;
 import com.vid.play.fx.overlay.XMLJDomParser;
 import com.vid.play.fx.overlay.XMLJDomParser.Annotation;
 import com.vid.play.fx.overlay.XMLJDomParser.AnnotationKey;
@@ -43,8 +44,8 @@ public class Main extends Application {
 
 	private void setAnnotationComp1(AnchorPane root) {
 		Node node = null;
-		Map<AnnotationKey, Annotation> xmlQuery = new XMLJDomParser().xmlQuery(
-				"I:/workspace/SpringWorkspace/VideoEditor/Sample/out/dev_anand_phoolon_ke_rang_se-CdPuOGazWZg.flv.xml");
+		Map<AnnotationKey, Annotation> xmlQuery = new XMLJDomParser()
+				.xmlQuery("I:/workspace/VideoPlayerWorkSpace/SampleInOut/Out/Blank Large.mp4.xml");
 		for (AnnotationKey key : xmlQuery.keySet()) {
 			try {
 				Annotation annotation = xmlQuery.get(key);
@@ -65,38 +66,46 @@ public class Main extends Application {
 
 				node = component.getAnnotatedNode();
 				AnchorPane annHolder = new AnchorPane();
-				GridPane gridPane = new GridPane();
-				gridPane.setMinSize(component.getWidth() + 5, component.getHeight());
-				ColumnConstraints column1 = new ColumnConstraints();
-				column1.setMinWidth(component.getWidth());
-				ColumnConstraints column2 = new ColumnConstraints();
-				column2.setMinWidth(5);
-				RowConstraints row1 = new RowConstraints();
-				row1.setValignment(VPos.TOP);
-				gridPane.getRowConstraints().add(row1);
-				gridPane.getColumnConstraints().add(column1);
-				gridPane.setPrefSize(component.getWidth(), component.getHeight());
-				gridPane.getChildren().add(node);
-				Button close = new Button();
-				ImageView imageView = new ImageView(component.getDeleteGraphic());
-				imageView.setFitWidth(10);
-				imageView.setFitHeight(10);
-				close.setGraphic(imageView);
-				close.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
-				close.setMaxSize(5, 5);
-				close.setPrefSize(5, 5);
-				gridPane.add(close, 1, 0);
-				annHolder.setLayoutX(component.getStartX());
-				annHolder.setLayoutY(component.getStartY());
-				annHolder.setPrefSize(component.getWidth() + 5, component.getHeight());
-				close.setOnMouseClicked(new EventHandler<MouseEvent>() {
-					@Override
-					public void handle(MouseEvent arg0) {
-						annHolder.setVisible(false);
-						annotation.setClosed(true);
-					}
-				});
-				annHolder.getChildren().add(gridPane);
+
+				if (component instanceof StaticComponent) {
+					annHolder.setLayoutX(component.getStartX());
+					annHolder.setLayoutY(component.getStartY());
+					annHolder.setPrefSize(component.getWidth(), component.getHeight());
+					annHolder.getChildren().add(node);
+				} else {
+					GridPane gridPane = new GridPane();
+					gridPane.setMinSize(component.getWidth() + 5, component.getHeight());
+					gridPane.setPrefSize(component.getWidth() + 5, component.getHeight());
+					ColumnConstraints column1 = new ColumnConstraints();
+					column1.setMinWidth(component.getWidth());
+					ColumnConstraints column2 = new ColumnConstraints();
+					column2.setMinWidth(5);
+					RowConstraints row1 = new RowConstraints();
+					row1.setValignment(VPos.TOP);
+					gridPane.getRowConstraints().add(row1);
+					gridPane.getColumnConstraints().add(column1);
+					gridPane.getChildren().add(node);
+					Button close = new Button();
+					ImageView imageView = new ImageView(component.getDeleteGraphic());
+					imageView.setFitWidth(10);
+					imageView.setFitHeight(10);
+					close.setGraphic(imageView);
+					close.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+					close.setMaxSize(5, 5);
+					close.setPrefSize(5, 5);
+					gridPane.add(close, 1, 0);
+					annHolder.setLayoutX(component.getStartX());
+					annHolder.setLayoutY(component.getStartY());
+					annHolder.setPrefSize(component.getWidth() + 5, component.getHeight());
+					close.setOnMouseClicked(new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent arg0) {
+							annHolder.setVisible(false);
+							annotation.setClosed(true);
+						}
+					});
+					annHolder.getChildren().add(gridPane);
+				}
 				root.getChildren().add(annHolder);
 			} catch (Exception e) {
 				e.printStackTrace();

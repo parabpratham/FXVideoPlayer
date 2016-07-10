@@ -2,6 +2,7 @@ package com.vid.play.fx.overlay;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,20 +15,27 @@ import org.jdom2.input.SAXBuilder;
 import com.vid.matroska.MatroskaContainer;
 import com.vid.overlay.comp.master.COMPONENT_TYPE;
 import com.vid.overlay.comp.master.SHAPE_TYPE;
+import com.vid.tagging.KeyWord;
+import com.vid.tagging.VideoTag;
 
 /**
  * @author pratham
  * 
  *         This class is used to parse the information from the xmlfile and
- *         create a Annotationlist of the present xml files.
  *
  */
 public class XMLJDomParser {
 
 	private Map<AnnotationKey, Annotation> annotationsMap;
+	private Map<Integer, KeyWord> keyWordsMap;
+	private Map<Integer, List<VideoTag>> keyTagMap;
+	private Map<Integer, VideoTag> tagMap;
 
 	public XMLJDomParser() {
 		annotationsMap = new HashMap<AnnotationKey, Annotation>();
+		keyWordsMap = new HashMap<>();
+		tagMap = new HashMap<>();
+		keyTagMap = new HashMap<>();
 	}
 
 	/**
@@ -76,12 +84,12 @@ public class XMLJDomParser {
 			if (inputFile == null)
 				return null;
 
-			System.out.println("Fetching elements for :" + inputFile);
+			// System.out.println("Fetching elements for :" + inputFile);
 			SAXBuilder saxBuilder = new SAXBuilder();
 			Document document = saxBuilder.build(inputFile);
 			System.out.println("Root element :" + document.getRootElement().getName());
 			Element classElement = document.getRootElement();
-			System.out.println("----------------------------");
+			System.out.println("------------xmlQuery----------------");
 			/*
 			 * List<Element> videoDetails =
 			 * classElement.getChildren("video_details"); Element
@@ -92,9 +100,9 @@ public class XMLJDomParser {
 			 * Element file_hash = supercarElement.getChild("file_hash");
 			 * System.out.println("file_name : " + file_hash.getText());
 			 */
-			System.out.println("----------------------------");
-
-			List<Element> annotations = classElement.getChildren("annotation");
+			System.out.println("------------Getting Annotations----------------");
+			Element video_anno_data = classElement.getChild("Video_anno_data");
+			List<Element> annotations = video_anno_data.getChildren("annotation");
 			for (Element annotation : annotations) {
 				// System.out.println(" " + annotation.getName());
 				String id = annotation.getAttributeValue("id");
@@ -131,11 +139,60 @@ public class XMLJDomParser {
 				annotationsMap.put(key, ann);
 				// System.out.println("----------------------------");
 			}
+
+			System.out.println("------------Getting KeyWords----------------");
+
+			Element video_tag_data = classElement.getChild("Video_tag_data");
+			Element KeyWords = video_tag_data.getChild("KeyWords");
+			List<Element> keywords = KeyWords.getChildren("keyword");
+			for (Element keyword : keywords) {
+				String id = keyword.getAttributeValue("id");
+				Element parameters = keyword.getChild("parameters");
+				Element word = parameters.getChild("Word");
+				KeyWord keyWord2 = new KeyWord();
+				keyWord2.setId(Integer.parseInt(id));
+				keyWord2.setWord(word.getText());
+				keyWordsMap.put(keyWord2.getId(), keyWord2);
+			}
+
+			System.out.println("------------Getting Tags----------------");
+			Element Video_tags = video_tag_data.getChild("Video_tags");
+			List<Element> videotags = Video_tags.getChildren("videotag");
+			for (Element videotag : videotags) {
+				String id = videotag.getAttributeValue("id");
+				Element starttime = videotag.getChild("starttime");
+				Element endtime = videotag.getChild("endtime");
+				Element parameters = videotag.getChild("parameters");
+				Element tagDescription = parameters.getChild("TagDescription");
+				Element tagKeyWords = parameters.getChild("TagKeyWords");
+				VideoTag tag = new VideoTag();
+				tag.setSegmentId(Integer.parseInt(id));
+				tag.setStartTime(Double.parseDouble(starttime.getText()));
+				tag.setEndTime(Double.parseDouble(endtime.getText()));
+				tag.setTagDescription(tagDescription.getText());
+				String[] keyWordIds = tagKeyWords.getText().split(",");
+				for (String keyWord : keyWordIds) {
+					int keyId = Integer.parseInt(keyWord);
+					tag.addKeyWord(keyWordsMap.get(keyId));
+					addToTagMap(keyId, tag);
+				}
+
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 		return annotationsMap;
+
+	}
+
+	private void addToTagMap(Integer key, VideoTag tag) {
+		List<VideoTag> list = keyTagMap.get(key);
+		if (list == null)
+			list = new ArrayList<>();
+		list.add(tag);
+		keyTagMap.put(key, list);
 
 	}
 
@@ -299,7 +356,31 @@ public class XMLJDomParser {
 
 		// readXml();
 		XMLJDomParser domParserTest = new XMLJDomParser();
-		domParserTest.xmlQuery("I:/workspace/SpringWorkspace/VideoEditor/Sample/out/JaiMataDi_KingCircle.mp4.xml");
+		domParserTest.xmlQuery("K:/Test/Out/test1_50.xml");
+	}
+
+	public Map<Integer, List<VideoTag>> getKeyTagMap() {
+		return keyTagMap;
+	}
+
+	public void setKeyTagMap(Map<Integer, List<VideoTag>> keyTagMap) {
+		this.keyTagMap = keyTagMap;
+	}
+
+	public Map<Integer, KeyWord> getKeyWordsMap() {
+		return keyWordsMap;
+	}
+
+	public void setKeyWordsMap(Map<Integer, KeyWord> keyWordsMap) {
+		this.keyWordsMap = keyWordsMap;
+	}
+
+	public Map<Integer, VideoTag> getTagMap() {
+		return tagMap;
+	}
+
+	public void setTagMap(Map<Integer, VideoTag> tagMap) {
+		this.tagMap = tagMap;
 	}
 
 }

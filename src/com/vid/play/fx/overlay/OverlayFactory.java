@@ -11,6 +11,7 @@ import org.jdom2.Element;
 
 import com.vid.commons.Helper;
 import com.vid.comp.Jcomp.AbstractComp;
+import com.vid.comp.Jcomp.StaticComponent;
 import com.vid.matroska.MatroskaContainer;
 import com.vid.play.fx.overlay.XMLJDomParser.Annotation;
 import com.vid.play.fx.overlay.XMLJDomParser.AnnotationKey;
@@ -107,39 +108,45 @@ public class OverlayFactory implements Runnable {
 
 				node = component.getAnnotatedNode();
 				AnchorPane annHolder = new AnchorPane();
-				GridPane gridPane = new GridPane();
-				gridPane.setMinSize(component.getWidth() + 10, component.getHeight());
-				ColumnConstraints column1 = new ColumnConstraints();
-				column1.setMinWidth(component.getWidth());
-				ColumnConstraints column2 = new ColumnConstraints();
-				column2.setMinWidth(10);
-				RowConstraints row1 = new RowConstraints();
-				row1.setValignment(VPos.TOP);
-				gridPane.getRowConstraints().add(row1);
-				gridPane.getColumnConstraints().add(column1);
-				gridPane.setPrefSize(component.getWidth(), component.getHeight());
-				gridPane.getChildren().add(node);
-				Button close = new Button();
-				ImageView imageView = new ImageView(component.getDeleteGraphic());
-				imageView.setFitWidth(10);
-				imageView.setFitHeight(10);
-				close.setGraphic(imageView);
-				close.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
-				close.setMaxSize(10, 10);
-				gridPane.add(close, 1, 0);
-				annHolder.getChildren().add(gridPane);
-				// System.out.println("Comp pos " + component.getStartX() + " "
-				// + component.getStartY());
-				annHolder.setLayoutX(component.getStartX());
-				annHolder.setLayoutY(component.getStartY());
-				annHolder.setPrefSize(component.getWidth() + 10, component.getHeight());
-				close.setOnMouseClicked(new EventHandler<MouseEvent>() {
-					@Override
-					public void handle(MouseEvent arg0) {
-						annHolder.setVisible(false);
-						annotation.setClosed(true);
-					}
-				});
+				if (component instanceof StaticComponent) {
+					annHolder.setLayoutX(component.getStartX());
+					annHolder.setLayoutY(component.getStartY());
+					annHolder.setPrefSize(component.getWidth(), component.getHeight());
+					annHolder.getChildren().add(node);
+				} else {
+					GridPane gridPane = new GridPane();
+					gridPane.setMinSize(component.getWidth() + 5, component.getHeight());
+					gridPane.setPrefSize(component.getWidth() + 5, component.getHeight());
+					ColumnConstraints column1 = new ColumnConstraints();
+					column1.setMinWidth(component.getWidth());
+					ColumnConstraints column2 = new ColumnConstraints();
+					column2.setMinWidth(5);
+					RowConstraints row1 = new RowConstraints();
+					row1.setValignment(VPos.TOP);
+					gridPane.getRowConstraints().add(row1);
+					gridPane.getColumnConstraints().add(column1);
+					gridPane.getChildren().add(node);
+					Button close = new Button();
+					ImageView imageView = new ImageView(component.getDeleteGraphic());
+					imageView.setFitWidth(10);
+					imageView.setFitHeight(10);
+					close.setGraphic(imageView);
+					close.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+					close.setMaxSize(5, 5);
+					close.setPrefSize(5, 5);
+					gridPane.add(close, 1, 0);
+					annHolder.setLayoutX(component.getStartX());
+					annHolder.setLayoutY(component.getStartY());
+					annHolder.setPrefSize(component.getWidth() + 5, component.getHeight());
+					close.setOnMouseClicked(new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent arg0) {
+							annHolder.setVisible(false);
+							annotation.setClosed(true);
+						}
+					});
+					annHolder.getChildren().add(gridPane);
+				}
 				annotationNodeMap.put(annotation.getId(), new CompNode(annHolder, component));
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -189,23 +196,23 @@ public class OverlayFactory implements Runnable {
 	private void generateOveralysList() {
 		System.out.println("generateOveralysList");
 		for (int overlayGenerationTime : eventTimeList) {
-			System.out.println(overlayGenerationTime);
+			// System.out.println(overlayGenerationTime);
 			for (AnnotationKey key : keyArrayList) {
 				if (key.getEndTime() <= overlayGenerationTime)
 					key.setChecked(true);
 				if (key.getStartTime() > overlayGenerationTime)
 					break;
-				else if (key.getStartTime() <= overlayGenerationTime && key.getEndTime() > overlayGenerationTime) {
-					CustomOverlayMarker marker;
-					if (overlayMarkerMap.get(overlayGenerationTime) == null) {
+				else if (key.getStartTime() <= overlayGenerationTime && key.getEndTime() >= overlayGenerationTime) {
+					CustomOverlayMarker marker = overlayMarkerMap.get(overlayGenerationTime);
+					if (marker == null) {
 						marker = new CustomOverlayMarker();
 						marker.setStartTime(key.getStartTime());
 						marker.setEndTime(key.getEndTime());
-					} else
-						marker = overlayMarkerMap.get(overlayGenerationTime);
+					}
 					marker.addOverlayMarker(overlayGenerationTime, annotationMap.get(key));
-					System.out.println(
-							"overlayGenerationTime " + overlayGenerationTime + " " + marker.getAnnotations().size());
+					// System.out.println(
+					// "overlayGenerationTime " + overlayGenerationTime + " " +
+					// marker.getAnnotations().size());
 					overlayMarkerMap.put(overlayGenerationTime, marker);
 				}
 			}

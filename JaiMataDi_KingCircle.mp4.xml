@@ -1,63 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?><Video_anno_data><annotation id="0" 
- type="com.vid.comp.Jcomp.SpotLight">
-<starttime>10995</starttime>
-<endtime> 16745</endtime><comp_type>JCOMPONENT</comp_type><parameters set="1"> 
-<StartX> 72.05</StartX> 
-<StartY>137.05</StartY> 
-<Width>255.0</Width> 
-<Height>117.0</Height> 
-<BgColor>rgba(128,51,77,57.407407407407405)</BgColor> 
-<Bgfilepath></Bgfilepath> 
-<Showonhover>true</Showonhover> 
-<Fillbg>true</Fillbg> 
-<DisplayString> Jai Mata Di </DisplayString> 
-<DisplayStringColor> rgb(0,0,0) </DisplayStringColor> 
-<Font>Arial</Font> 
-<Font_size>8</Font_size> 
-<Bold>false</Bold>
-<Italic>false</Italic>
+ type="com.vid.comp.Jcomp.Note">
+<starttime>11970</starttime>
+<endtime> 25164</endtime><comp_type>JCOMPONENT</comp_type><parameters set="1"> 
+<StartX> 79.05</StartX> 
+<StartY>168.05</StartY> 
+<Width>234.0</Width> 
+<Height>85.0</Height> 
+<BgColor>rgba(255,128,128,46.29629629629629)</BgColor> 
+<DisplayString> aldnasjldnasndl </DisplayString> 
+<DisplayStringColor> rgb(179,102,128) </DisplayStringColor> 
+<Font>Rockwell</Font> 
+<Font_size>18</Font_size> 
+<Bold>true</Bold>
+<Italic>true</Italic>
 <Strikethrough>false</Strikethrough>
 <Underline>false</Underline>
 </parameters> 
 </annotation> 
 <annotation id="1" 
- type="com.vid.comp.Jcomp.SpotLight">
-<starttime>10550</starttime>
-<endtime> 14355</endtime><comp_type>JCOMPONENT</comp_type><parameters set="1"> 
-<StartX> 355.05</StartX> 
-<StartY>66.05</StartY> 
-<Width>100.0</Width> 
-<Height>50.0</Height> 
-<BgColor>rgba(51,26,128,0.0)</BgColor> 
-<Bgfilepath></Bgfilepath> 
-<Showonhover>false</Showonhover> 
-<Fillbg>false</Fillbg> 
-<DisplayString> Hi next </DisplayString> 
-<DisplayStringColor> rgb(0,0,0) </DisplayStringColor> 
-<Font>Arial</Font> 
-<Font_size>8</Font_size> 
-<Bold>false</Bold>
-<Italic>false</Italic>
-<Strikethrough>false</Strikethrough>
-<Underline>false</Underline>
-</parameters> 
-</annotation> 
-<annotation id="2" 
- type="com.vid.comp.Jcomp.SpotLight">
-<starttime>13965</starttime>
-<endtime> 27569</endtime><comp_type>JCOMPONENT</comp_type><parameters set="1"> 
-<StartX> 99.05</StartX> 
-<StartY>46.05</StartY> 
-<Width>100.0</Width> 
-<Height>50.0</Height> 
-<BgColor>rgba(255,255,255,34.25925925925926)</BgColor> 
-<Bgfilepath>C:\Users\hp\Desktop\1.jpg</Bgfilepath> 
-<Showonhover>true</Showonhover> 
-<Fillbg>false</Fillbg> 
-<DisplayString> Prem pujari me dl ka pata </DisplayString> 
-<DisplayStringColor> rgb(0,0,0) </DisplayStringColor> 
-<Font>Arial</Font> 
-<Font_size>8</Font_size> 
+ type="com.vid.comp.Jcomp.Note">
+<starttime>15675</starttime>
+<endtime> 26171</endtime><comp_type>JCOMPONENT</comp_type><parameters set="1"> 
+<StartX> 266.05</StartX> 
+<StartY>6.05</StartY> 
+<Width>279.0</Width> 
+<Height>80.0</Height> 
+<BgColor>rgba(102,26,51,41.66666666666667)</BgColor> 
+<DisplayString> Asdasdczxczxc </DisplayString> 
+<DisplayStringColor> rgb(77,102,204) </DisplayStringColor> 
+<Font>Bell MT</Font> 
+<Font_size>32</Font_size> 
 <Bold>false</Bold>
 <Italic>false</Italic>
 <Strikethrough>false</Strikethrough>

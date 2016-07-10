@@ -14,7 +14,7 @@
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/Jembl"/>
 	<classpathentry kind="lib" path="I:/eclipse/addon/fxsampler-1.0.9.jar"/>
-	<classpathentry kind="lib" path="I:/eclipse/addon/controlsfx-8.20.9/controlsfx-8.20.9.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="I:/eclipse/addon/controlsfx-8.20.9/controlsfx-8.20.9.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

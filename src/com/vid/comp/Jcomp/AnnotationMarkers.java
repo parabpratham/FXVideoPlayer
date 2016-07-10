@@ -5,11 +5,16 @@ import java.net.URL;
 import org.controlsfx.control.PopOver;
 
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class AnnotationMarkers extends AbstractComp {
@@ -26,11 +31,10 @@ public class AnnotationMarkers extends AbstractComp {
 
 	@Override
 	public Node getAnnotatedNode() {
-		Image image = new Image("file:" + getBgfilepath());
+		Image image = new Image("file:C:\\Users\\hp\\Desktop\\test\\Demo_Images\\spotlight.jpg");
 		ImageView iew = new ImageView(image);
 		PopOver popOver = createPopOver();
 		MarkerPopUp markerPopUp = new MarkerPopUp(iew, popOver);
-		popOver.setContentNode(markerPopUp.getContentText());
 		iew.setFitWidth(getWidth());
 		iew.setFitHeight(getHeight());
 		iew.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -44,6 +48,8 @@ public class AnnotationMarkers extends AbstractComp {
 						if (popOver != null && popOver.isShowing()) {
 							popOver.hide(Duration.ZERO);
 						}
+						//System.out.println(popOver +" "+iew);
+						popOver.setContentNode(markerPopUp.getContentText());
 						popOver.show(iew);
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -68,10 +74,25 @@ public class AnnotationMarkers extends AbstractComp {
 			this.popOver = popOver;
 			try {
 				contentText = new Label(getDisplayString());
-				contentText.setMaxHeight(100);
-				contentText.setMaxWidth(100);
 				contentText.setWrapText(true);
 				contentText.setDisable(true);
+				contentText.setText(getDisplayString());
+				contentText.setMinWidth(getWidth());
+				contentText.setMinHeight(getHeight());
+
+				if (getBgColor() != null && !getBgColor().equalsIgnoreCase("")) {
+					Color value = getColorValue(getBgColor());
+					BackgroundFill fill = new BackgroundFill(value, CornerRadii.EMPTY, Insets.EMPTY);
+					contentText.setBackground(new Background(fill));
+				}
+				// Region region = (Region) label.lookup(".content");
+				// region.setStyle("-fx-background-color: " + getBgColor() +
+				// ";");
+
+				if (getFont() != null && !getFont().equalsIgnoreCase("")) {
+					contentText.setFont(getFont(true));
+				}
+
 				// contentText.setFont(Font.font(getFont(),
 				// Integer.parseInt(getFont_size())));
 				/// contentText.setStyle("-fx-text-fill: " +
@@ -108,6 +129,7 @@ public class AnnotationMarkers extends AbstractComp {
 	}
 
 	private PopOver createPopOver() {
+		
 		PopOver popOver = new PopOver();
 		popOver.setDetachable(isDetachable());
 		popOver.setDetached(isInitially_detached());

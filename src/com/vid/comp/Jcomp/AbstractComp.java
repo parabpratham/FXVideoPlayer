@@ -13,6 +13,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public abstract class AbstractComp {
@@ -129,14 +132,14 @@ public abstract class AbstractComp {
 		saveInfo();
 	}
 
-	public Color getBgcolorValue(String bgColor) {
+	public Color getColorValue(String bgColor) {
 		Color bg_Color = null;
 		String[] split = bgColor.split(",");
 		if (split.length == 4) {
 			bg_Color = new Color(toDoubleBy255(split[0].replace("rgba(", "")), toDoubleBy255(split[1]),
-					toDoubleBy255(split[2]), Double.parseDouble(split[3].replace(")", ""))/100);
+					toDoubleBy255(split[2]), Double.parseDouble(split[3].replace(")", "")) / 100);
 		} else {
-			bg_Color = new Color(toDoubleBy255(split[0].replace("rgba(", "")), toDoubleBy255(split[1]),
+			bg_Color = new Color(toDoubleBy255(split[0].replace("rgb(", "")), toDoubleBy255(split[1]),
 					toDoubleBy255(split[2].replace(")", "")), 1);
 		}
 
@@ -169,9 +172,22 @@ public abstract class AbstractComp {
 	public String getDisplayStringColor() {
 		return displayStringColor;
 	}
+	
+	public Color getDisplayStringColorValue(String value){
+		return getColorValue(value);
+	}
 
 	public void setDisplayStringColor(String displayStringColor) {
 		this.displayStringColor = displayStringColor;
+	}
+
+	public Font getFont(boolean newVal) {
+		FontPosture fp = isItalic() ? FontPosture.ITALIC : FontPosture.REGULAR;
+		FontWeight fw = isBold() ? FontWeight.BOLD : FontWeight.NORMAL;
+		Font font = Font.font(getFont(), fw, fp, Double.parseDouble(getFont_size()));
+		//System.out.println(font);
+		return font;
+
 	}
 
 	public String getFont() {

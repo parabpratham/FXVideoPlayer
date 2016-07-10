@@ -106,7 +106,7 @@ public class ButtonForController {
 
 				FileChooser fileChooser = new FileChooser();
 				fileChooser.setTitle("Open Resource File");
-				fileChooser.setInitialDirectory(new File("I:\\workspace\\VideoPlayerWorkSpace\\SampleInOut\\Out"));
+				fileChooser.setInitialDirectory(new File("K:\\Test\\Out"));
 				fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("MKV", "*.mkv"));
 				try {
 					File file = fileChooser.showOpenDialog(videoPlayerController.getStageWindow());
@@ -120,6 +120,11 @@ public class ButtonForController {
 
 			}
 		});
+
+	}
+
+	public static void initializeShowTagsbuttButton(VideoPlayerController videoPlayerController,
+			ToggleButton showtags_butt, DirectMediaPlayer mediaPlayer) {
 
 	}
 

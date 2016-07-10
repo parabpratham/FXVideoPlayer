@@ -10,7 +10,6 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 
 public class Title extends AbstractComp {
 
@@ -68,20 +67,29 @@ public class Title extends AbstractComp {
 		label.setText(getDisplayString());
 		label.setMinWidth(getWidth());
 		label.setMinHeight(getHeight());
+
 		if (getBgColor() != null && !getBgColor().equalsIgnoreCase("")) {
-			Color value = getBgcolorValue(getBgColor());
+			Color value = getColorValue(getBgColor());
 			BackgroundFill fill = new BackgroundFill(value, CornerRadii.EMPTY, Insets.EMPTY);
 			label.setBackground(new Background(fill));
 
-			if (getFont() != null && !getFont().equalsIgnoreCase("")) {
-				if (getFont_size() != null && !getFont_size().equalsIgnoreCase("")) {
-					label.setFont(Font.font(getFont(), Double.parseDouble(getFont_size())));
-				} else
-					label.setFont(Font.font(getFont()));
-			}
 		}
-		return label;
 
+		if (getDisplayStringColor() != null && !getDisplayStringColor().equalsIgnoreCase("")) {
+			Color value = getColorValue(getDisplayStringColor());
+			label.setTextFill(value);
+		}
+
+		// Region region = (Region) label.lookup(".content");
+		// region.setStyle("-fx-background-color: " + getBgColor() + ";");
+
+		if (getFont() != null && !getFont().equalsIgnoreCase("")) {
+			label.setFont(getFont(true));
+		}
+		label.setWrapText(true);
+		// TODO underline, strikeout and justify
+
+		return label;
 	}
 
 }

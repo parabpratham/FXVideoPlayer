@@ -79,7 +79,7 @@ public class OverLayGenerator {
 			Thread thrds[] = new Thread[dg.activeCount()];
 			dg.enumerate(thrds);
 			for (Thread t : thrds) {
-				System.out.println(t.getName() + " Stopping " + t.getName());
+				//System.out.println(t.getName() + " Stopping " + t.getName());
 				if (t.isAlive())
 					t.stop();
 			}
@@ -92,11 +92,11 @@ public class OverLayGenerator {
 	public void stopVideoOerlays() {
 		if (tg != null) {
 			try {
-				System.out.println("StopVideo Called " + Calendar.getInstance().getTimeInMillis());
+				//System.out.println("StopVideo Called " + Calendar.getInstance().getTimeInMillis());
 				Thread thrds[] = new Thread[tg.activeCount()];
 				tg.enumerate(thrds);
 				for (Thread t : thrds) {
-					System.out.println(t.getName() + " Stopping " + t.getName());
+					//System.out.println(t.getName() + " Stopping " + t.getName());
 					if (t.isAlive())
 						t.stop();
 				}
@@ -133,13 +133,13 @@ public class OverLayGenerator {
 			@Override
 			public void newMedia(MediaPlayer mediaPlayer) {
 				super.newMedia(mediaPlayer);
-				System.out.println("-- new media ----" + mediaPlayer.getTitle());
+				//System.out.println("-- new media ----" + mediaPlayer.getTitle());
 			}
 
 			@Override
 			public void mediaChanged(MediaPlayer mediaPlayer, libvlc_media_t media, String mrl) {
 				super.mediaChanged(mediaPlayer, media, mrl);
-				System.out.println("-- media changed ----" + mrl);
+				//System.out.println("-- media changed ----" + mrl);
 				// if (mrl.equals("0")) {
 				// stopVideoOerlays();
 				startNewGeneratorFactory(getContainer());

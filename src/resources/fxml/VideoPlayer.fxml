@@ -123,30 +123,6 @@
 																				<Tooltip text="Seek_forward" />
 																			</tooltip>
 																		</Button>
-																		<Button fx:id="prev_butt" contentDisplay="GRAPHIC_ONLY" ellipsisString="" mnemonicParsing="false" prefHeight="33.0" prefWidth="38.0" text="previous">
-																			<graphic>
-																				<ImageView id="glyphicons-145-folder-open.png" fitHeight="25.0" fitWidth="25.0" mouseTransparent="true">
-																					<image>
-																						<Image url="@../icons/control_start_blue.png" />
-																					</image>
-																				</ImageView>
-																			</graphic>
-																			<tooltip>
-																				<Tooltip text="Previous" />
-																			</tooltip>
-																		</Button>
-																		<Button fx:id="next_butt" contentDisplay="GRAPHIC_ONLY" ellipsisString="" mnemonicParsing="false" prefHeight="33.0" prefWidth="38.0" text="Next">
-																			<tooltip>
-																				<Tooltip text="Open" />
-																			</tooltip>
-																			<graphic>
-																				<ImageView id="glyphicons-145-folder-open.png" fitHeight="25.0" fitWidth="25.0" mouseTransparent="true">
-																					<image>
-																						<Image url="@../icons/control_end_blue.png" />
-																					</image>
-																				</ImageView>
-																			</graphic>
-																		</Button>
 																	</items>
 																</ToolBar>
 																<ToolBar prefHeight="43.0" prefWidth="187.0">
@@ -175,7 +151,7 @@
 																				<Tooltip text="Toggle Annotations" />
 																			</tooltip>
 																		</ToggleButton>
-																		<ToggleButton fx:id="showtags_butt" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" text="PL">
+																		<ToggleButton fx:id="showtags_butt" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" text="Show Tags">
 																			<graphic>
 																				<ImageView id="media_playback_seekback.png" fitHeight="25.0" fitWidth="25.0" mouseTransparent="true">
 																					<image>
@@ -187,7 +163,7 @@
 																				<Tooltip text="Show tags" />
 																			</tooltip>
 																		</ToggleButton>
-																		<Button fx:id="openvideo_butt" contentDisplay="GRAPHIC_ONLY" ellipsisString="" mnemonicParsing="false" prefHeight="33.0" prefWidth="38.0" text="Convert">
+																		<Button fx:id="openvideo_butt" contentDisplay="GRAPHIC_ONLY" ellipsisString="" mnemonicParsing="false" prefHeight="33.0" prefWidth="38.0" text="Open">
 																			<graphic>
 																				<ImageView id="glyphicons-145-folder-open.png" fitHeight="25.0" fitWidth="25.0" mouseTransparent="true">
 																					<image>

@@ -6,14 +6,10 @@ import org.controlsfx.control.InfoOverlay;
 
 import com.vid.commons.Helper;
 
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -78,7 +74,7 @@ public class SpotLight extends AbstractComp {
 		if (getBgfilepath() != null && !getBgfilepath().equalsIgnoreCase(""))
 			iew.setImage(new Image("file:" + getBgfilepath()));
 		else if (getBgColor() != null && !getBgColor().equalsIgnoreCase("")) {
-			Color value = getBgcolorValue(getBgColor());
+			Color value = getColorValue(getBgColor());
 			WritableImage createImage = null;
 			createImage = isFillbg() ? Helper.createFilledImage(iew, value) : Helper.createBorderImage(iew, value);
 			iew.setImage(createImage);
@@ -86,7 +82,6 @@ public class SpotLight extends AbstractComp {
 
 		// TODO Change text attributes
 		Font display = Font.font(getFont());
-		
 		return infoOverlay;
 	}
 

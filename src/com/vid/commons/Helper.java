@@ -31,7 +31,7 @@ public class Helper {
 	public static Map<String, Class<?>[]> addToMethodMap(String className) {
 
 		if (getClassMethods().get(className) == null) {
-			//System.out.println(className);
+			// System.out.println(className);
 			Map<String, Class<?>[]> methodParameterMap = new HashMap<String, Class<?>[]>();
 			try {
 				Method[] methods = Class.forName(className).newInstance().getClass().getMethods();
@@ -80,7 +80,6 @@ public class Helper {
 		// + " " + parameter.getTextTrim() + " ");
 		Object newInstance = null;
 		try {
-
 			if (pType.getCanonicalName().equalsIgnoreCase(double.class.getCanonicalName())) {
 				newInstance = Double.parseDouble(parameter.getTextTrim());
 			} else if (pType.getCanonicalName().equalsIgnoreCase(int.class.getCanonicalName())) {
@@ -110,7 +109,7 @@ public class Helper {
 				}
 			} else if (pType.getCanonicalName().equalsIgnoreCase(boolean.class.getCanonicalName())) {
 				newInstance = Boolean.parseBoolean(parameter.getTextTrim());
-			} else if (pType.getCanonicalName().equalsIgnoreCase(ArrowLocation.class.getName())) {
+			} else if (pType.getCanonicalName().equalsIgnoreCase(ArrowLocation.class.getCanonicalName())) {
 				newInstance = ArrowLocation.valueOf(parameter.getTextTrim());
 			}
 
@@ -132,7 +131,7 @@ public class Helper {
 	public static WritableImage createBorderImage(ImageView iew, javafx.scene.paint.Color color) {
 		int width = (int) iew.getFitWidth();
 		int height = (int) iew.getFitHeight();
-		//System.out.println("createBorderImage " + width + " " + height);
+		// System.out.println("createBorderImage " + width + " " + height);
 		WritableImage writableImage = new WritableImage(width, height);
 		try {
 			PixelWriter writer = writableImage.getPixelWriter();
@@ -156,7 +155,7 @@ public class Helper {
 	public static WritableImage createFilledImage(ImageView iew, javafx.scene.paint.Color color) {
 		int width = (int) iew.getFitWidth();
 		int height = (int) iew.getFitHeight();
-		//System.out.println("createBorderImage " + width + " " + height);
+		// System.out.println("createBorderImage " + width + " " + height);
 		WritableImage writableImage = new WritableImage(width, height);
 		try {
 			PixelWriter writer = writableImage.getPixelWriter();
@@ -174,6 +173,21 @@ public class Helper {
 
 	public static Color getColorWithOpacity(Color color, double opacity) {
 		return new Color(color.getRed(), color.getGreen(), color.getBlue(), opacity);
+	}
+
+	private static String toRgbStringa(Color c, double alpha) {
+		String t = "rgba(" + to255Int(c.getRed()) + "," + to255Int(c.getGreen()) + "," + to255Int(c.getBlue()) + ","
+				+ alpha + ")";
+		return t;
+	}
+
+	private static String toRgbString(Color c) {
+		String t = "rgb(" + to255Int(c.getRed()) + "," + to255Int(c.getGreen()) + "," + to255Int(c.getBlue()) + ")";
+		return t;
+	}
+
+	private static int to255Int(double d) {
+		return (int) (d * 255);
 	}
 
 }

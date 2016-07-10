@@ -103,8 +103,8 @@ public class DisplayOverlays implements Runnable {
 						// " + isTrue);
 						if (isTrue) {
 							try {
-								System.out.println("Display overlay " + overlayIndex + " " + keySet.get(overlayIndex)
-										+ " " + newTime + " " + keySet.get(overlayIndex + 1));
+//								System.out.println("Display overlay " + overlayIndex + " " + keySet.get(overlayIndex)
+//										+ " " + newTime + " " + keySet.get(overlayIndex + 1));
 								Integer integer = keySet.get(overlayIndex);
 								// mediaPlayer.pause();
 								Platform.runLater(new Runnable() {
@@ -161,8 +161,8 @@ public class DisplayOverlays implements Runnable {
 			for (Annotation annotation : customOverlayMarker.getAnnotations()) {
 				if (!annotation.isClosed()) {
 					try {
-						System.out.println("Add -- " + annotation.getId() + " " + annotation.getStartTime() + " "
-								+ annotation.getEndTime());
+//						System.out.println("Add -- " + annotation.getClassName() + " " + annotation.getId() + " "
+//								+ annotation.getStartTime() + " " + annotation.getEndTime());
 						CompNode compNode = OverlayFactory.getAnnotationNodeMap().get(annotation.getId());
 						AnchorPane node = (AnchorPane) compNode.getNode();
 						node.setLayoutX(compNode.getComp().getStartX());

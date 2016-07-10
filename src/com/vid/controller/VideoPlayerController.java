@@ -3,6 +3,7 @@ package com.vid.controller;
 import java.awt.Dimension;
 import java.net.URL;
 import java.nio.ByteBuffer;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
@@ -69,12 +70,6 @@ public class VideoPlayerController implements Initializable {
 	private Button stop_butt;
 
 	@FXML
-	private Button next_butt;
-
-	@FXML
-	private Button prev_butt;
-
-	@FXML
 	private ToggleButton showtags_butt;
 
 	@FXML
@@ -128,12 +123,11 @@ public class VideoPlayerController implements Initializable {
 		videoSourceRatioProperty = new SimpleFloatProperty(0.4f);
 		pixelFormat = PixelFormat.getByteBgraPreInstance();
 		getPlayerHolder().setStyle("-fx-background-color: black;");
-
+		initializeMultiplires();
 		initializeImageView();
 		initializeSliders();
 		initializeButtons();
 		// initializeMediaPlayer();
-		initializeMultiplires();
 	}
 
 	private void initializeMultiplires() {
@@ -146,10 +140,20 @@ public class VideoPlayerController implements Initializable {
 	}
 
 	private void intinializeAnnotationEngine() {
+		long startTime = Calendar.getInstance().getTimeInMillis();
+		System.out.println(PATH_TO_VIDEO);
+		System.out.println("Start intinializeAnnotationEngine " + startTime);
 		MatroskaContainer matroskaContainer = new MatroskaContainer(PATH_TO_VIDEO);
+		System.out.println("Read conatainer " + Calendar.getInstance().getTimeInMillis());
 		setOverLayGenerator(new OverLayGenerator(getMediaPlayerComponent(), matroskaContainer, getPlayerHolder()));
+		System.out.println("List overlays and tags " + Calendar.getInstance().getTimeInMillis());
 		setDisplayOverlays(new DisplayOverlays(matroskaContainer, getMediaPlayerComponent(), getPlayerHolder()));
+		System.out.println("DisplayOverlays " + Calendar.getInstance().getTimeInMillis());
 		Platform.runLater(getDisplayOverlays());
+		System.out.println("End intinializeAnnotationEngine "
+				+ (Calendar.getInstance().getTimeInMillis() - startTime) / 100 + " seconds");
+		
+		getMediaPlayerComponent().getMediaPlayer().mute();
 	}
 
 	private DisplayOverlays displayOverlays;
@@ -167,9 +171,8 @@ public class VideoPlayerController implements Initializable {
 		ButtonForController.initializeRewindButton(this, rewind_butt, mediaPlayerComponent.getMediaPlayer());
 		ButtonForController.initializeForwardButton(this, fforward_butt, mediaPlayerComponent.getMediaPlayer());
 		ButtonForController.initializeMuteButton(this, mute_butt, mediaPlayerComponent.getMediaPlayer());
-		ButtonForController.initializeNextButton(this, next_butt, mediaPlayerComponent.getMediaPlayer());
-		ButtonForController.initializePrevButton(this, prev_butt, mediaPlayerComponent.getMediaPlayer());
 		ButtonForController.initializeNewVideoButton(this, openvideo_butt, mediaPlayerComponent.getMediaPlayer());
+		ButtonForController.initializeShowTagsbuttButton(this, showtags_butt, mediaPlayerComponent.getMediaPlayer());
 		// TODO
 		// code for toggle button of tags and annotations
 
@@ -237,7 +240,7 @@ public class VideoPlayerController implements Initializable {
 		mediaPlayerComponent.getMediaPlayer().addMediaPlayerEventListener(new MediaPlayerEventAdapter() {
 			@Override
 			public void timeChanged(MediaPlayer mediaPlayer, long newTime) {
-				super.timeChanged(mediaPlayer, newTime);
+				// super.timeChanged(mediaPlayer, newTime);
 				try {
 					timeSlider.setValue(Math.round(mediaPlayerComponent.getMediaPlayer().getPosition() * 100));
 					String s = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(newTime),
@@ -299,7 +302,7 @@ public class VideoPlayerController implements Initializable {
 
 		@Override
 		public void timeChanged(MediaPlayer mediaPlayer, long newTime) {
-			//System.out.println("timeChanged : " + newTime);
+			// System.out.println("timeChanged : " + newTime);
 			super.timeChanged(mediaPlayer, newTime);
 		}
 
@@ -384,22 +387,6 @@ public class VideoPlayerController implements Initializable {
 
 	public void setStop_butt(Button stop_butt) {
 		this.stop_butt = stop_butt;
-	}
-
-	public Button getNext_butt() {
-		return next_butt;
-	}
-
-	public void setNext_butt(Button next_butt) {
-		this.next_butt = next_butt;
-	}
-
-	public Button getPrev_butt() {
-		return prev_butt;
-	}
-
-	public void setPrev_butt(Button prev_butt) {
-		this.prev_butt = prev_butt;
 	}
 
 	public ToggleButton getShowtags_butt() {
